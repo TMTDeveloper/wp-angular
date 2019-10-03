@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { WordpressService } from './wordpress.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-wordpress-api';
+  
+  posts$: Observable<any[]>;
+
+  constructor(private wp: WordpressService) {
+    this.posts$ = this.wp.getPosts();
+  }
 }
